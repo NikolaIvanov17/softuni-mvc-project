@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+<body>
+<header>
+    <th:block th:include="~{fragments/nav-bar}"></th:block>
+</header>
+<main class="mt-5">
+    <div class="bg-image">
+        <span style="visibility: hidden">....</span>
+    <h1 class="text-center text-dark">Add Book</h1>
+    <hr class="hr-2 bg-dark w-25">
+    <form id="add-book-form" class="form w-25 mx-auto" th:action="@{/books/add}" method="post"
+          enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="add-book-name" class="font-weight-bold">Name</label>
+            <input type="text" class="form-control" placeholder="Book Name..." id="add-book-name" name="name">
+        </div>
+        <div class="form-group">
+            <label for="add-book-author" class="font-weight-bold">Author</label>
+            <input type="text" class="form-control" name="author" id="add-book-author" placeholder="Book Author...">
+        </div>
+        <div class="form-group">
+            <label for="add-book-price" class="font-weight-bold">Price</label>
+            <input type="number" step="any" class="form-control" placeholder="Book Price..." id="add-book-price" name="price">
+        </div>
+        <div class="form-group">
+            <label for="add-book-categories" class="font-weight-bold">Categories</label>
+            <select multiple="" class="form-control" id="add-book-categories" name="categories">
+                <option selected="" disabled="">--- Please Choose Book Category ---</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="add-book-image" class="text-black mb-1">Image URL</label>
+            <input type="url" class="form-control" id="add-book-image" placeholder="Book Image Url..." name="imgUrl">
+        </div>
+
+        <hr class="hr-2 bg-dark w-25">
+        <div class="button-holder d-flex justify-content-center">
+            <button type="submit" class="btn btn-info">Add Book</button>
+        </div>
+        <span style="visibility: hidden">....</span>
+    </form>
+    </div>
+</main>
+<footer>
+    <th:block th:include="~{fragments/footer}"></th:block>
+</footer>
+</body>
+<script>
+    fetch('/categories/fetch')
+        .then((response) => response.json())
+        .then((json) => {
+            json.forEach((category) => $('#add-book-categories').append(`<option value="${category.id}">${category.name}</option>`));
+        })
+        .catch((err) => console.log(err));
+</script>
+</html>

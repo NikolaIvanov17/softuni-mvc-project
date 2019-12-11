@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+<body>
+<header>
+    <th:block th:include="~{fragments/nav-bar}"></th:block>
+</header>
+<main class="mt-5">
+    <div class="bg-image text-center">
+        <span style="visibility: hidden">....</span>
+        <div class="text-center mt-5">
+            <img th:src="${book.imgUrl}" width="350" height="350" alt="quote">
+        </div>
+        <div class="row">
+            <div class="col col-md-12 mt-5">
+                <h1 th:text="'Name: ' + ${book.name}"></h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-md-12">
+                <h4 th:utext="'Author: ' + ${book.author}"></h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-md-12">
+                <th:block th:if="${book.discountedPrice == null}">
+                    <h4 th:text="'Price: ' + ${book.price}"></h4>
+                </th:block>
+                <th:block th:if="${book.discountedPrice != null}">
+                    <h4 th:text="'Price: ' + ${book.discountedPrice}"></h4>
+                </th:block>
+            </div>
+        </div>
+        <div class="row">
+            <form class="form w-25 mx-auto" th:action="@{/cart/add-book}" th:method="post">
+                <div class="form-group mx-auto">
+                    <label for="quantity" class="font-weight-bold">Quantity</label>
+                    <input id="quantity" class="form-control text-center" type="number" min="1" max="15" step="1"
+                           name="quantity" value="1"/>
+                </div>
+                <input type="hidden" name="id" th:value="${book.id}">
+                <button type="submit" class="btn btn-info">Order Book</button>
+            </form>
+        </div>
+        <span style="visibility: hidden">....</span>
+    </div>
+</main>
+<footer>
+    <th:block th:include="~{fragments/footer}"></th:block>
+</footer>
+</body>
+</html>

@@ -1,0 +1,115 @@
+hr.hr-2 {
+    height: 2px;
+}
+
+.logout-button {
+    background: transparent;
+    border: none;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 1) !important;
+}
+
+.logout-button:hover {
+    cursor: pointer;
+}
+
+.logout-button:focus {
+    outline: none;
+}
+
+/*img.img-thumbnail {*/
+/*    border: 1px solid #ddd; !* Gray border *!*/
+/*    border-radius: 4px; !* Rounded border *!*/
+/*    padding: 5px; !* Some padding *!*/
+/*    max-width: 40px;*/
+/*    max-height: 40px;*/
+/*}*/
+
+.btn-width {
+    width: 120px;
+    margin: 5px;
+}
+
+.error {
+    color: red;
+    font-family: "Harlow Solid Italic";
+}
+
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+    background-color: #17a2b8;
+}
+
+
+.w-15 {
+    width: 15%;
+}
+
+.bg-blur {
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/opacity/see-through */
+    color: white;
+    font-weight: bold;
+    border: 3px solid #f1f1f1;
+    z-index: 2;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+}
+
+.bg-image {
+    background-image: url('https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/book-quotes-1531945007.jpg?crop=1.00xw:0.753xh;0,0.247xh&resize=480:*');
+    background-size: cover;
+    background-position: center;
+}
+.bg-image-all-users {
+    background-image: url('https://ak8.picdn.net/shutterstock/videos/16870258/thumb/1.jpg');
+    background-color: snow;
+    background-size: cover;
+    background-position: center;
+}
+
+.bg-image-home {
+    background-image: url('https://wallpapercave.com/wp/LF1PNzB.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.bg-image-index {
+     background-image: url('https://www.gladsbuy.com/media/catalog/product/cache/1/image/1200x1200/cd183fc3b28bbe2685bb0b4f2a628e4d/D/G/DGX-481_10X10.jpg');
+     background-position: center;
+     background-attachment: fixed;
+     background-size: cover;
+ }
+
+.bg-image-all-offers {
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuX1O4mv_lIl5lwYSIpVGdXMcE6-GBS2rNZ-4ANeTExU3rX8c9mw&s');
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+/*https://content.linkedin.com/content/dam/business/marketing-solutions/global/en_US/blog/20b810.jpg
+ https://live.staticflickr.com/2611/4117596207_41fd070ea8_b.jpg
+ http://blog.lawjobs.com/wp-content/uploads/2015/09/law-books-on-table-Article-201509181159.jpg
+ https://images-na.ssl-images-amazon.com/images/I/71tj2pdG9OL._SX466_.jpg
+ */
+
+textarea {
+    resize: none;
+}
+
+.bg-footer {
+    position:fixed;
+    bottom:0;
+    width: 100%;
+}
+
+.img-thumb {
+    padding: .25rem;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: .25rem;
+    max-width: 100%;
+}
+

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html
+        lang="en"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+<body class="bg-image-index">
+<header>
+    <th:block th:include="~{fragments/nav-bar}"></th:block>
+</header>
+<main class="my-5">
+        <div class="container text-white">
+            <h1>Welcome to Book Shop</h1>
+            <hr class="my-3">
+            <p class="h4">The best Book Store Shop in the online web market</p>
+            <p class="h4">We are offering many books in many categories! To satisfied all your expectations!!!</p>
+            <hr class="my-3"/>
+            <h3>
+                This is the biggest online book store shop in Bulgaria, offering books in every category! Please <a
+                    th:href="@{/users/login}">Login</a> to see all offers, if you don't have an account - <a
+                    th:href="@{/users/register}">Register</a>
+            </h3>
+        </div>
+</main>
+<footer class="bg-footer">
+    <th:block th:include="~{fragments/footer}"></th:block>
+</footer>
+</footer>
+</body>
+</html>

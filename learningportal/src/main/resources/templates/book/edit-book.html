@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+<body>
+<header>
+    <th:block th:include="~{fragments/nav-bar}"></th:block>
+</header>
+<main class="mt-5">
+    <div class="bg-image">
+        <span style="visibility: hidden">....</span>
+        <h1 class="text-center text-dark">Edit Book</h1>
+        <hr class="hr-2 bg-dark w-25">
+        <form id="add-book-form" class="form w-25 mx-auto" th:action="@{/books/edit/{id}(id=${bookId})}"
+              method="post" enctype="multipart/form-data"><input type="hidden" name="_csrf"
+                                                                 value="c686cd14-a7f9-4216-8009-c093b7d3df86">
+            <div class="form-group">
+                <label for="add-book-name" class="font-weight-bold">Name</label>
+                <input type="text" class="form-control text-center" id="add-book-name" name="name"
+                       th:value="${book.name}">
+            </div>
+            <div class="form-group">
+                <label for="add-book-author" class="font-weight-bold">Author</label>
+                <input type="text" class="form-control text-center" id="add-book-author" name="author"
+                       th:value="${book.author}">
+            </div>
+            <div class="form-group">
+                <label for="add-book-price" class="font-weight-bold">Price</label>
+                <input type="number" step="any" class="form-control text-center" id="add-book-price" name="price"
+                       th:value="${book.price}">
+            </div>
+            <div class="form-group">
+                <label for="add-book-categories" class="font-weight-bold">Categories</label>
+                <select multiple="" class="form-control" id="add-book-categories" name="categories">
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="add-book-image" class="font-weight-bold">Image URL</label>
+                <input type="text" class="form-control text-center" id="add-book-image" name="imgUrl"
+                       th:value="${book.imgUrl}">
+            </div>
+            <hr class="hr-2 bg-dark w-25">
+            <div class="button-holder d-flex justify-content-center">
+                <button type="submit" class="btn btn-info">Edit Book</button>
+            </div>
+            <span style="visibility: hidden">....</span>
+        </form>
+    </div>
+</main>
+<footer>
+    <th:block th:include="~{fragments/footer}"></th:block>
+</footer>
+</body>
+<script th:inline="javascript">
+    fetch('/categories/fetch')
+        .then((response) => response.json())
+    .then((json) => {
+        let categories = [[${book.categories}]];
+    console.log(categories);
+    json.forEach((category) =>
+    $('#add-book-categories').append(
+        categories.includes(category.name)
+            ? `<option value="${category.id}" selected>${category.name}</option>`
+            : `<option value="${category.id}">${category.name}</option>`));
+    })
+    .catch((err) => console.log(err));
+</script>
+</html>

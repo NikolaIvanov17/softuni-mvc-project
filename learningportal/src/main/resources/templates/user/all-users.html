@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+<body>
+<div class="container-fluid">
+    <header>
+        <th:block th:include="~{fragments/nav-bar}"></th:block>
+    </header>
+    <main class="mt-5">
+        <div class="bg-image-all-users">
+            <span style="visibility: hidden">....</span>
+            <h1 class="text-center bold font-weight-bold text-dark">All users</h1>
+            <hr class="hr-2 bg-dark">
+            <table class="table table-hover w-75 mx-auto">
+                <thead>
+                <tr class="row mx-auto">
+                    <th class="col-md-1 text-center"><strong>#</strong></th>
+                    <th class="col-md-3 text-center"><strong>Username</strong></th>
+                    <th class="col-md-2 text-center"><strong>Email</strong></th>
+                    <th class="col-md-2 text-center"><strong>Roles</strong></th>
+                </tr>
+                </thead>
+                <tbody>
+                <th:block th:each="users, iter : ${users}">
+                    <tr class="row mx-auto">
+                        <th class="col-md-1 text-center" th:utext="${iter.index + 1}"></th>
+                        <td class="col-md-3 text-center" th:utext="${users.username}"></td>
+                        <td class="col-md-2 text-center" th:utext="${users.email}"></td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+            <hr class="hr-2 bg-dark">
+            <span style="visibility: hidden">....</span>
+        </div>
+    </main>
+    <footer>
+        <th:block th:include="~{fragments/footer}"></th:block>
+    </footer>
+</div>
+</body>
+</html>

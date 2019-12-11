@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:replace="fragments/head"></th:block>
+</head>
+<body>
+<div class="container-fluid">
+    <th:block th:replace="fragments/nav-bar"></th:block>
+    <main class="mt-3">
+        <div class="row d-flex justify-content-between">
+            <div class="books-navigation col-md-3">
+                <h2 class="font-weight-bold">Navigation</h2>
+                <form class="mt-3">
+                    <div class="custom-control custom-radio mt-3">
+                        <input type="radio" id="allRadio" name="selection"
+                               class="custom-control-input"
+                               value="all">
+                        <label class="h4 custom-control-label" for="allRadio">All</label>
+                    </div>
+                    <th:block th:each="category : ${categories}" th:object="${category}">
+                        <div class="custom-control custom-radio mt-3">
+                            <input type="radio" th:id="|*{name.toLowerCase()}Radio|" name="selection"
+                                   class="custom-control-input"
+                                   th:value="*{name}">
+                            <label class="h4 custom-control-label" th:for="|*{name.toLowerCase()}Radio|"
+                                   th:text="*{name}"></label>
+                        </div>
+                    </th:block>
+                </form>
+            </div>
+            <div class="data col-md-8">
+                <h1 class="text-center font-weight-bold">Books</h1>
+                <div class="books-data"></div>
+            </div>
+        </div>
+    </main>
+    <th:block th:replace="fragments/footer"></th:block>
+</div>
+<script>
+    function formatBook(book) {
+        return '<div class="book">'
+            // + '<div class="text-center">'
+            // + `<a href="/books/details/${book.book.id}"><img src="${book.book.imageUrl}" class="book-image-home img-thumbnail px-auto" alt="Image not loaded..."/></a>`
+            // + '</div>'
+            + `<h5 class="text-center font-weight-bold mt-3">Name: ${book.book.name}</h5>`
+            + `<h5 class="text-center font-weight-bold">Price: ${book.price.toFixed(2)}</h5>`
+            + `<h5 class="text-center font-weight-bold">Original Price: ${book.product.price.toFixed(2)}</h5>`
+            + '</div>'
+    }
+
+    $(document).ready(function () {
+        $('#allRadio').attr('checked', true);
+
+        fetch('http://localhost:8000/best-offers/all')
+            .then((response) => response.json())
+            .then((json) => {
+                $('.books-data').empty();
+
+                if (json.length === 0) {
+                    $('.books-data').append(`<h1 class="text-center font-weight-bold">There are no books in the ${category} category.</h1>`)
+                } else {
+                    for (let i = 0; i < json.length; i += 3) {
+                        $('.books-data').append('<div class="books-row row d-flex justify-content-around mt-5">');
+                        if (i < json.length) $('.books-data .books-row:last-child').append(formatBook(json[i]));
+                        if (i + 1 < json.length) $('.books-data .books-row:last-child').append(formatBook(json[i + 1]));
+                        if (i + 2 < json.length) $('.books-data .books-row:last-child').append(formatBook(json[i + 2]));
+                    }
+                }
+            })
+    });
+
+    $('input[type=radio][name=selection]').change(function () {
+        let category = $(this).val();
+
+        fetch('http://localhost:8000/best-offers/' + category)
+            .then((response) => response.json())
+            .then((json) => {
+                $('.books-data').empty();
+
+                if (json.length === 0) {
+                    $('.books-data').append(`<h1 class="text-center font-weight-bold">There are no books in the ${category} category.</h1>`)
+                } else {
+                    for (let i = 0; i < json.length; i += 3) {
+                        $('.books-data').append('<div class="books-row row d-flex justify-content-around mt-5">');
+                        if (i < json.length) $('.books-data .books-row:last-child').append(formatBook(json[i]));
+                        if (i + 1 < json.length) $('.books-data .books-row:last-child').append(formatBook(json[i + 1]));
+                        if (i + 2 < json.length) $('.books-data .books-row:last-child').append(formatBook(json[i + 2]));
+                    }
+                }
+            })
+    });
+</script>
+</body>
+</html>

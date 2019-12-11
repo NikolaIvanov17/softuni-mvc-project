@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+<body>
+<header>
+    <th:block th:include="~{fragments/nav-bar}"></th:block>
+</header>
+<main class="mt-5">
+    <h1 class="text-center text-dark">Еее верно ли? Е са си е*а мамата!</h1>
+    <hr class="hr-2 bg-dark ">
+    <div class="text-center">
+        <h3 th:text="${message}" style="color: red;"></h3>
+    </div>
+    <div class="text-center">
+        <img src="https://thegeekpage.com/wp-content/uploads/2015/12/kmode-windows-10.jpg" alt="Computer">
+    </div>
+</main>
+<footer>
+    <th:block th:include="~{fragments/footer}"></th:block>
+</footer>
+</body>
+</html>
