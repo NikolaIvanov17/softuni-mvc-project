@@ -6,8 +6,8 @@ import org.softuni.learningportal.domain.entities.Book;
 import org.softuni.learningportal.domain.models.service.BookServiceModel;
 import org.softuni.learningportal.error.BookNameAlreadyExistsException;
 import org.softuni.learningportal.error.BookNotFoundException;
-import org.softuni.learningportal.repository.OfferRepository;
 import org.softuni.learningportal.repository.BookRepository;
+import org.softuni.learningportal.repository.OfferRepository;
 import org.softuni.learningportal.service.BookService;
 import org.softuni.learningportal.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,8 +63,8 @@ public class BookServiceImpl implements BookService {
     @Override
     public BookServiceModel findBookById(String id) {
         return this.bookRepository.findById(id)
-                .map(p -> {
-                    BookServiceModel bookServiceModel = this.modelMapper.map(p, BookServiceModel.class);
+                .map(b -> {
+                    BookServiceModel bookServiceModel = this.modelMapper.map(b, BookServiceModel.class);
                     this.offerRepository.findByBook_Id(bookServiceModel.getId())
                             .ifPresent(o -> bookServiceModel.setDiscountedPrice(o.getPrice()));
 

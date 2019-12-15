@@ -79,60 +79,37 @@ public class UserController extends BaseController {
         return super.view("user/profile", modelAndView);
     }
 
-//    @GetMapping("/edit")
-//    @PreAuthorize("isAuthenticated()")
-//    @PageTitle("Edit Profile")
-//    public ModelAndView editProfile(Principal principal, ModelAndView modelAndView, @ModelAttribute(name = "model") UserEditBindingModel model) {
-//        UserServiceModel userServiceModel = this.userService.findUserByUserName(principal.getName());
-//        model = this.modelMapper.map(userServiceModel, UserEditBindingModel.class);
-//        model.setPassword(null);
-//        modelAndView.addObject("model", model);
-//
-//        return super.view("user/edit-profile", modelAndView);
-//    }
-//
-//    @PatchMapping("/edit")
-//    @PreAuthorize("isAuthenticated()")
-//    public ModelAndView editProfileConfirm(ModelAndView modelAndView, @ModelAttribute(name = "model") UserEditBindingModel model, BindingResult bindingResult) {
-//        this.userEditValidator.validate(model, bindingResult);
-//
-//        if (bindingResult.hasErrors()) {
-//            model.setOldPassword(null);
-//            model.setPassword(null);
-//            model.setConfirmPassword(null);
-//            modelAndView.addObject("model", model);
-//
-//            return super.view("user/edit-profile", modelAndView);
-//        }
-//
-//        UserServiceModel userServiceModel = this.modelMapper.map(model, UserServiceModel.class);
-//        this.userService.editUserProfile(userServiceModel, model.getOldPassword());
-//
-//        return super.redirect("/users/profile");
-//    }
-
     @GetMapping("/edit")
     @PreAuthorize("isAuthenticated()")
-    @PageTitle("Edit User")
-    public ModelAndView editProfile(Principal principal, ModelAndView modelAndView) {
-        modelAndView
-                .addObject("model", this.modelMapper.map(this.userService.findUserByUserName(principal.getName()), UserProfileViewModel.class));
+    @PageTitle("Edit Profile")
+    public ModelAndView editProfile(Principal principal, ModelAndView modelAndView, @ModelAttribute(name = "model") UserEditBindingModel model) {
+        UserServiceModel userServiceModel = this.userService.findUserByUserName(principal.getName());
+        model = this.modelMapper.map(userServiceModel, UserEditBindingModel.class);
+        model.setPassword(null);
+        modelAndView.addObject("model", model);
 
         return super.view("user/edit-profile", modelAndView);
     }
 
     @PatchMapping("/edit")
     @PreAuthorize("isAuthenticated()")
-    public ModelAndView editProfileConfirm(@ModelAttribute UserEditBindingModel model) {
-        if (!model.getPassword().equals(model.getConfirmPassword())) {
-            return super.view("user/edit-profile");
+    public ModelAndView editProfileConfirm(ModelAndView modelAndView, @ModelAttribute(name = "model") UserEditBindingModel model, BindingResult bindingResult) {
+        this.userEditValidator.validate(model, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            model.setOldPassword(null);
+            model.setPassword(null);
+            model.setConfirmPassword(null);
+            modelAndView.addObject("model", model);
+
+            return super.view("user/edit-profile", modelAndView);
         }
 
-        this.userService.editUserProfile(this.modelMapper.map(model, UserServiceModel.class), model.getOldPassword());
+        UserServiceModel userServiceModel = this.modelMapper.map(model, UserServiceModel.class);
+        this.userService.editUserProfile(userServiceModel, model.getOldPassword());
 
         return super.redirect("/users/profile");
     }
-
 
     @GetMapping("/all")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -156,7 +133,7 @@ public class UserController extends BaseController {
 
     @PostMapping("/set-user/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ModelAndView setUser(@PathVariable String id) {
+    public ModelAndView setUserRole(@PathVariable String id) {
         this.userService.setUserRole(id, "user");
 
         return super.redirect("/users/all");
@@ -164,7 +141,7 @@ public class UserController extends BaseController {
 
     @PostMapping("/set-administrator/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ModelAndView setModerator(@PathVariable String id) {
+    public ModelAndView setUserAdministratorRole(@PathVariable String id) {
         this.userService.setUserRole(id, "administrator");
 
         return super.redirect("/users/all");
@@ -172,7 +149,7 @@ public class UserController extends BaseController {
 
     @PostMapping("/set-admin/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ModelAndView setAdminRole(@PathVariable String id) {
+    public ModelAndView setUserAdminRole(@PathVariable String id) {
         this.userService.setUserRole(id, "admin");
 
         return super.redirect("/users/all");

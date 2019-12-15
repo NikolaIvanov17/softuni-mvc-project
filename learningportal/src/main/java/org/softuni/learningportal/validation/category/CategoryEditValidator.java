@@ -29,6 +29,7 @@ public class CategoryEditValidator implements org.springframework.validation.Val
         if (categoryEditBindingModel.getName().length() < 3) {
             errors.rejectValue(
                     "name",
+                    ValidationConstants.NAME_LENGTH,
                     ValidationConstants.NAME_LENGTH
             );
         }

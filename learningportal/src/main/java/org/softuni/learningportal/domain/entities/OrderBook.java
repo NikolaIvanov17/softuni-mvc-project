@@ -4,13 +4,13 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "discount_offers")
-public class Offer extends BaseEntity {
+@Table(name = "order_books")
+public class OrderBook extends BaseEntity {
 
     private Book book;
     private BigDecimal price;
 
-    public Offer() {
+    public OrderBook() {
     }
 
     @ManyToOne(targetEntity = Book.class)

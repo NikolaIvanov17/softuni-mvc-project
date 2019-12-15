@@ -5,38 +5,16 @@
 <head>
     <th:block th:include="~{fragments/head}"></th:block>
 </head>
-<body>
+<body class="bg-image-home">
 <header>
     <th:block th:include="~{fragments/nav-bar}"></th:block>
-    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="/../js/showQuotes.js"></script>
 </header>
-<main>
-    <div class="container-fluid">
-        <div class="row no-gutter">
-            <div class="d-none d-md-flex col-md-4 col-lg-3 bg-image-home"></div>
-            <div class="col-md-8 col-lg-6">
-                <div class="login d-flex align-items-center py-5">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-9 col-lg-6 mx-auto">
-                                <div id="toChange" class=".quotes-data">
-                                    <div class="mt-3">
-                                        <h1 class="text-black" style="font-size: larger">Welcome to the Learning portal platform !
-                                        This is a place for everyone who needs any information for something. You can
-                                        watch lectures and read online books.</h1>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="d-none d-md-flex col-md-4 col-lg-3 bg-image-home"></div>
-        </div>
+<main class="mt-5">
+    <div class="text-center mt-5">
+            <h3 class="home-back text-white mt-2">Welcome to the Book Store, <span th:text="${#authentication.getPrincipal().getUsername()}"></span></h3>
     </div>
 </main>
-<footer>
+<footer class="bg-footer">
     <th:block th:include="~{fragments/footer}"></th:block>
 </footer>
 </body>

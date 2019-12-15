@@ -8,16 +8,19 @@
 <header>
     <th:block th:include="~{fragments/nav-bar}"></th:block>
 </header>
-<main class="mt-5">
-    <h1 class="text-center text-dark">Еее верно ли? Е са си е*а мамата!</h1>
-    <hr class="hr-2 bg-dark ">
-    <div class="text-center">
-        <h3 th:text="${message}" style="color: red;"></h3>
-    </div>
-    <div class="text-center">
-        <img src="https://thegeekpage.com/wp-content/uploads/2015/12/kmode-windows-10.jpg" alt="Computer">
-    </div>
-</main>
+    <main class="mt-5">
+        <div class="bg-image">
+            <hr class="hr-2 bg-dark"/>
+            <h1 style="font-size: 50px" class="text-center font-weight-bold text-dark">Еее верно ли? Е са си е*а мамата!</h1>
+            <div class="text-center">
+                <h3 th:utext="${message}" style="font-size: 25px; color: red;"></h3>
+            </div>
+            <div class="text-center">
+                <img src="https://thegeekpage.com/wp-content/uploads/2015/12/kmode-windows-10.jpg" alt="Comp">
+            </div>
+            <span style="visibility: hidden">....</span>
+        </div>
+    </main>
 <footer>
     <th:block th:include="~{fragments/footer}"></th:block>
 </footer>

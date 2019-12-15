@@ -39,7 +39,7 @@ public class OfferServiceImpl implements OfferService {
                 .collect(Collectors.toList());
     }
 
-    @Scheduled(fixedRate = 300000)
+    @Scheduled(fixedRate = 333333)
     private void generateOffers() {
         this.offerRepository.deleteAll();
         List<BookServiceModel> books = this.bookService.findAllBooks();
@@ -50,12 +50,12 @@ public class OfferServiceImpl implements OfferService {
 
         Random rnd = new Random();
         List<Offer> offers = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 3; i++) {
             Offer offer = new Offer();
             offer.setBook(this.modelMapper.map(books.get(rnd.nextInt(books.size())), Book.class));
             offer.setPrice(offer.getBook().getPrice().multiply(new BigDecimal(0.8)));
 
-            if (offers.stream().filter(o -> o.getBook().getId().equals(offer.getBook().getId())).count() == 0) {
+            if (offers.stream().noneMatch(o -> o.getBook().getId().equals(offer.getBook().getId()))) {
                 offers.add(offer);
             }
         }

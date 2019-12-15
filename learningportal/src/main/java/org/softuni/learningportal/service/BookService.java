@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface BookService {
 
-    BookServiceModel createBook(BookServiceModel productServiceModel);
+    BookServiceModel createBook(BookServiceModel bookServiceModel);
 
     List<BookServiceModel> findAllBooks();
 
     BookServiceModel findBookById(String id);
 
-    BookServiceModel editBook(String id, BookServiceModel productServiceModel);
+    BookServiceModel editBook(String id, BookServiceModel bookServiceModel);
 
     void deleteBook(String id);
 

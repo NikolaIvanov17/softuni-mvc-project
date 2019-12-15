@@ -24,21 +24,35 @@ public class BookAddValidator implements org.springframework.validation.Validato
     @Override
     public void validate(Object object, Errors errors) {
         BookAddBindingModel bookAddBindingModel = (BookAddBindingModel) object;
-
-        if (bookAddBindingModel.getName().length() == 0) {
-            errors.rejectValue(
-                    "name",
-                    ValidationConstants.BOOK_NAME_CANNOT_EMPTY,
-                    ValidationConstants.BOOK_NAME_CANNOT_EMPTY
-            );
-        }
-
-        if (this.bookRepository.findByName(bookAddBindingModel.getName()).isPresent()) {
-            errors.rejectValue(
-                    "name",
-                    String.format(ValidationConstants.NAME_ALREADY_EXISTS, "Книга", bookAddBindingModel.getName()),
-                    String.format(ValidationConstants.NAME_ALREADY_EXISTS, "Книга", bookAddBindingModel.getName())
-            );
-        }
+//
+//        if (bookAddBindingModel.getName().length() < 0) {
+//            errors.rejectValue(
+//                    "name",
+//                    ValidationConstants.BOOK_NAME_CANNOT_EMPTY
+//            );
+//        }
+//
+//        if (bookAddBindingModel.getAuthor().length() < 0) {
+//            errors.rejectValue(
+//                    "author",
+//                    ValidationConstants.BOOK_AUTHOR_CANNOT_EMPTY
+//            );
+//        }
+//
+//        if (bookAddBindingModel.getPrice().intValue() < 0) {
+//            errors.rejectValue(
+//                    "price",
+//                    ValidationConstants.BOOK_PRICE_CANNOT_EMPTY
+//            );
+//        }
+//
+//
+//        if (this.bookRepository.findByName(bookAddBindingModel.getName()).isPresent()) {
+//            errors.rejectValue(
+//                    "name",
+//                    String.format(ValidationConstants.NAME_ALREADY_EXISTS, "Книга", bookAddBindingModel.getName()),
+//                    String.format(ValidationConstants.NAME_ALREADY_EXISTS, "Книга", bookAddBindingModel.getName())
+//            );
+//        }
     }
 }

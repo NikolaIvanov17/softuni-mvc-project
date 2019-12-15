@@ -14,11 +14,11 @@ public class ValidationConstants {
 
     public final static String NAME_LENGTH = "Името трябва да бъде с дължина поне 3 символа!";
 
-    public final static String BOOK_DESCRIPTION_LENGTH = "Описанието трябва да бъде дълго с поне 5 символа!";
+    public final static String BOOK_AUTHOR_CANNOT_EMPTY = "Авторът не може да бъде празен, моля въведете автор на книгата";
 
     public final static String BOOK_NAME_CANNOT_EMPTY = "Името не може да бъде празно, моля въведете име на книгата!";
 
-    public final static String BOOK_PRICE_CANNOT_EMPTY = "Моля въведете цена за книгата!";
+    public final static String BOOK_PRICE_CANNOT_EMPTY = "Книгата не може да бъде без цена, моля въведете цена за книгата!";
 
     public final static String NAME_ALREADY_EXISTS = "%s с име %s вече съществува!";
 }

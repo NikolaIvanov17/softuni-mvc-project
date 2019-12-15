@@ -8,39 +8,43 @@
 <header>
     <th:block th:include="~{fragments/nav-bar}"></th:block>
 </header>
-<main class="mt-3">
-    <h1 class="text-center text-dark">Delete Book</h1>
-    <hr class="hr-2 bg-dark w-25">
-    <form id="add-book-form" class="form w-25 mx-auto" th:action="@{/books/delete/{id}(id=${bookId})}"
-          method="post" enctype="multipart/form-data"><input type="hidden" name="_csrf"
-                                                             value="c686cd14-a7f9-4216-8009-c093b7d3df86">
-        <div class="form-group">
-            <label for="add-book-name" class="font-weight-bold">Name</label>
-            <input type="text" class="form-control text-center" id="add-book-name" name="name"
-                   th:value="${book.name}" disabled>
-        </div>
-        <div class="form-group">
-            <label for="add-book-author" class="mb-1">Author</label>
-            <input type="text" step="any" class="form-control text-center" id="add-book-author" name="author"
-                   th:value="${book.author}" disabled="">
-        </div>
-        <div class="form-group">
-            <label for="add-book-price" class="font-weight-bold">Price</label>
-            <input type="number" step="any" class="form-control text-center" id="add-book-price" name="price"
-                   th:value="${book.price}" disabled="">
-        </div>
-        <div class="form-group">
-            <label for="add-book-categories" class="font-weight-bold">Categories</label>
-            <select multiple="" class="form-control" id="add-book-categories" name="categories">
-                <option th:each="category : ${book.categories}" th:text="${category}" th:value="${category}"
-                        readonly disabled=""></option>
-            </select>
-        </div>
+<main class="mt-5">
+    <div class="bg-image">
+        <span style="visibility: hidden">....</span>
+        <h1 class="text-center text-dark">Delete Book</h1>
         <hr class="hr-2 bg-dark w-25">
-        <div class="button-holder d-flex justify-content-center">
-            <button type="submit" class="btn btn-danger">Delete Book</button>
-        </div>
-    </form>
+        <form id="add-book-form" class="form w-25 mx-auto" th:action="@{/books/delete/{id}(id=${bookId})}"
+              method="post" enctype="multipart/form-data"><input type="hidden" name="_csrf"
+                                                                 value="c686cd14-a7f9-4216-8009-c093b7d3df86">
+            <div class="form-group">
+                <label for="add-book-name" class="font-weight-bold">Name</label>
+                <input type="text" class="form-control text-center" id="add-book-name" name="name"
+                       th:value="${book.name}" disabled>
+            </div>
+            <div class="form-group">
+                <label for="add-book-author" class="mb-1">Author</label>
+                <input type="text" step="any" class="form-control text-center" id="add-book-author" name="author"
+                       th:value="${book.author}" disabled="">
+            </div>
+            <div class="form-group">
+                <label for="add-book-price" class="font-weight-bold">Price</label>
+                <input type="number" step="any" class="form-control text-center" id="add-book-price" name="price"
+                       th:value="${book.price}" disabled="">
+            </div>
+            <div class="form-group">
+                <label for="add-book-categories" class="font-weight-bold">Categories</label>
+                <select multiple="" class="form-control" id="add-book-categories" name="categories">
+                    <option th:each="category : ${book.categories}" th:text="${category}" th:value="${category}"
+                            readonly disabled=""></option>
+                </select>
+            </div>
+            <hr class="hr-2 bg-dark w-25">
+            <div class="button-holder d-flex justify-content-center">
+                <button type="submit" class="btn btn-danger">Delete Book</button>
+            </div>
+        </form>
+        <span style="visibility: hidden">....</span>
+    </div>
 </main>
 <footer>
     <th:block th:include="~{fragments/footer}"></th:block>

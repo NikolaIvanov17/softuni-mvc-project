@@ -26,7 +26,7 @@ hr.hr-2 {
 /*}*/
 
 .btn-width {
-    width: 120px;
+    width: 145px;
     margin: 5px;
 }
 
@@ -70,9 +70,11 @@ hr.hr-2 {
 }
 
 .bg-image-home {
-    background-image: url('https://wallpapercave.com/wp/LF1PNzB.jpg');
-    background-size: cover;
+    background-image: url('https://static.wixstatic.com/media/5ef4b1_5b6417f747554ef1ab4200369c38891f~mv2.jpg/v1/fill/w_1754,h_650,al_c/5ef4b1_5b6417f747554ef1ab4200369c38891f~mv2.jpg');
     background-position: center;
+    background-attachment: fixed;
+    background-size: 100% 90%;
+    background-repeat: no-repeat;
 }
 
 .bg-image-index {
@@ -89,11 +91,9 @@ hr.hr-2 {
     background-size: cover;
 }
 
-/*https://content.linkedin.com/content/dam/business/marketing-solutions/global/en_US/blog/20b810.jpg
- https://live.staticflickr.com/2611/4117596207_41fd070ea8_b.jpg
- http://blog.lawjobs.com/wp-content/uploads/2015/09/law-books-on-table-Article-201509181159.jpg
- https://images-na.ssl-images-amazon.com/images/I/71tj2pdG9OL._SX466_.jpg
- */
+.home-back:hover {
+    background-color: #17a2b8;
+}
 
 textarea {
     resize: none;
