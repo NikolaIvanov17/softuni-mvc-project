@@ -11,8 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.List;
-
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -27,17 +25,7 @@ public class CategoryServiceTests {
     @MockBean
     private CategoryRepository mockCategoryRepository;
 
-//    @Test
-//    public void createWithValidValues_ReturnCorrect() {
-//       CategoryServiceModel category = new CategoryServiceModel();
-//        category.setName("Best Category");
-//        when(mockCategoryRepository.save(any()))
-//                .thenReturn(new Category());
-//
-//        service.addCategory(category);
-//        verify(mockCategoryRepository)
-//                .save(any());
-//    }
+
 
     @Test(expected = IllegalArgumentException.class)
     public void createWithInvalidValues_ThrowError() {
@@ -52,6 +40,18 @@ public class CategoryServiceTests {
         verify(mockCategoryRepository)
                 .save(any());
     }
+
+    //    @Test
+//    public void createWithValidValues_ReturnCorrect() {
+//       CategoryServiceModel category = new CategoryServiceModel();
+//        category.setName("Best Category");
+//        when(mockCategoryRepository.save(any()))
+//                .thenReturn(new Category());
+//
+//        service.addCategory(category);
+//        verify(mockCategoryRepository)
+//                .save(any());
+//    }
 
     @Test(expected = Exception.class)
     public void categoryService_deleteCategoryWithInvalidValue_ThrowError() {

@@ -58,7 +58,7 @@ public class BookController extends BaseController {
 
     @PostMapping("/add")
     @PreAuthorize("hasRole('ROLE_ADMINISTRATOR')")
-    public ModelAndView addBookConfirm(ModelAndView modelAndView, @ModelAttribute(name = "model") BookAddBindingModel model, BindingResult bindingResult) {
+    public ModelAndView addBookConfirm(ModelAndView modelAndView, @ModelAttribute(name = "model") BookAddBindingModel model, BindingResult bindingResult) throws IOException {
         this.addValidator.validate(model, bindingResult);
 
         if (bindingResult.hasErrors()) {
@@ -76,7 +76,7 @@ public class BookController extends BaseController {
                         .collect(Collectors.toList())
         );
 
-//        bookServiceModel.setImgUrl(this.cloudinaryService.uploadImage(model.getImgUrl()));
+        bookServiceModel.setImgUrl(this.cloudinaryService.uploadImage(model.getImgUrl()));
 
         this.bookService.createBook(bookServiceModel);
 
